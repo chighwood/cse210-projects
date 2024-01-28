@@ -5,24 +5,25 @@ class Word
     public string _text;
     public bool _isHidden;
 
-    public Word(text)
+    public Word(string text)
     {
-
+        _text = text;
+        _isHidden = false;
     }
     public void Hide()
     {
-        return 
+        _isHidden = true;
     }
     public void Show()
     {
-        return
+        _isHidden = false;
     }
     public bool IsHidden()
     {
-        return
+        return _isHidden;
     }
-    public string GetDisplayText()
+    public string GetDisplayText(string hiddenPlaceHolder = "______")
     {
-        return
+        return _isHidden ? hiddenPlaceHolder : _text;
     } 
 }
