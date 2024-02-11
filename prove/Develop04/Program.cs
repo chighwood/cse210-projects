@@ -1,5 +1,4 @@
 using System;
-
 class Program
 {
     static void Main(string[] args)
@@ -13,7 +12,7 @@ class Program
             Console.Write("Enter your choice (1-4): ");
             string choice = Console.ReadLine();
 
-            Activity activity;
+            Activity activity = null;
 
             switch (choice)
             {
@@ -32,9 +31,9 @@ class Program
                 default:
                     Console.WriteLine("Invalid choice. Please try again.");
                     continue;
-            }
 
+            }
             activity.Run();
-        }    
-    }
-}
+        }
+    }   
+} 
