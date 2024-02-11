@@ -20,7 +20,7 @@ class ListingActivity : Activity
         _count = 0;
     }
 
-    public new void Run()
+    public override void Run()
     {
         base.DisplayStartingMessage();
         ListItems();

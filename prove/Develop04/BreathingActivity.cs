@@ -7,7 +7,7 @@ class BreathingActivity : Activity
     {
 
     }
-    public new void Run()
+    public override void Run()
     {
         base.DisplayStartingMessage();
         BreathingCycle();
@@ -16,13 +16,14 @@ class BreathingActivity : Activity
 
     private void BreathingCycle()
     {
-        while (_duration > 0)
+        var LocalDuration = _duration;
+        while (LocalDuration > 0)
         {
             Console.WriteLine("Breathe in...");
-            ShowCountDown(5);
+            base.ShowCountDown(5);
             Console.WriteLine("Breathe out...");
-            ShowCountDown(5);
-            _duration -= 10;
+            base.ShowCountDown(5);
+            LocalDuration -= 10;
         }
     }
 }

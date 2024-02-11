@@ -2,7 +2,10 @@ using System;
 class Program
 {
     static void Main(string[] args)
+
     {
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+         
         while (true)
         {
             Console.WriteLine("1. Breathing Activity");

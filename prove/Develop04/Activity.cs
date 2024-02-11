@@ -30,9 +30,9 @@ class Activity
     public void DisplayEndingMessage()
     {
         Console.WriteLine("Good work!");
-        ShowCountDown(4);
+        ShowCountDown(2);
         Console.WriteLine($"You completed {_name} for {_duration} seconds! ");
-        ShowCountDown(4);
+        ShowCountDown(2);
         Console.WriteLine("Activity has concluded."); 
     }
 
@@ -47,9 +47,8 @@ class Activity
         Console.WriteLine("Done.");
     }
 
-    public void Run()
+    public virtual void Run()
     {
-        DisplayStartingMessage();
-        DisplayEndingMessage();
+
     }
 }

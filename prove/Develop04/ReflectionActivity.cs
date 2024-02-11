@@ -8,7 +8,7 @@ class ReflectionActivity : Activity
 
     }
 
-    public new void Run()
+    public override void Run()
     {
         base.DisplayStartingMessage();
         ReflectOnPrompt();
