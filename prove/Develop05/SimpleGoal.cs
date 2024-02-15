@@ -1,21 +1,32 @@
 public class SimpleGoal : Goal
 {
-    private bool _isComplete;
+    private StreamReader reader;
 
-    public  SimpleGoal(string name, string description, string points) : base (name, description, points)
+    public  SimpleGoal(string name, string description, int points) : base (name, description, points)
     {
-        _isComplete = false;
+        
     }
-    public void RecordEvent()
+    public override void RecordEvent()
     {
-        // Implement recording event
+        this._isComplete = true;
     }
-    public bool IsComplete()
+    public override bool IsComplete()
     {
         return _isComplete;
     }
+    public override string GetDetailsString()
+    {
+        throw new NotImplementedException();
+    }
     public override string GetStringRepresentation()
     {
-        return $"{_shortName}: {_description}, Points: {_points}, Status: {_isComplete}";
+        string x = _isComplete ? "x" : " ";
+        return $" [{x}] {_shortName}: {_description}, Points: {_points}";
+    }
+        internal new void WriteToStreamWriter(StreamWriter writer)
+    {
+        throw new NotImplementedException();
     }
 }
+    
+

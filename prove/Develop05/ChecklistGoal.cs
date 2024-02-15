@@ -4,25 +4,34 @@ public class ChecklistGoal : Goal{
     private int _target;
     private int _bonus;
 
-    public ChecklistGoal(string name, string description, string points, int target, int bonus) : base (target, bonus)
+    public ChecklistGoal(string name, string description, int points, int target, int bonus) : base (name, description, points)
     {
         _target = target;
         _bonus = bonus;
     }
     public override void RecordEvent()
     {
-        // implement recording event
+        _amountCompleted++;
+        if (_amountCompleted >= _target)
+        {
+            _isComplete = true;
+            _points += _bonus;
+        }
     }
-    public new bool IsComplete()
+    public override bool IsComplete()
     {
-        return _amountCompleted >= _target;
+        return _isComplete;
     }
     public override string GetDetailsString()
     {
-        return $"{base.GetDetailsString()}, Completed: {_amountCompleted}/{_target}";
+        return $"{GetStringRepresentation()}, Completed: {_amountCompleted}/{_target}";
     }
     public override string GetStringRepresentation()
     {
         return GetDetailsString();
+    }
+        internal new void WriteToStreamWriter(StreamWriter writer)
+    {
+        throw new NotImplementedException();
     }
 }
