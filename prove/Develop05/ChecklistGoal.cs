@@ -9,6 +9,12 @@ public class ChecklistGoal : Goal{
         _target = target;
         _bonus = bonus;
     }
+
+    public ChecklistGoal(StreamReader reader)
+    {
+
+    }
+
     public override void RecordEvent()
     {
         _amountCompleted++;

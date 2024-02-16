@@ -4,6 +4,10 @@ public class EternalGoal : Goal
     {
     
     }
+    public EternalGoal(StreamReader reader)
+    {
+
+    }
     public override void RecordEvent()
     {
         return;

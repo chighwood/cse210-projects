@@ -6,6 +6,7 @@ public abstract class Goal
     protected string _description;
     protected int _points;
     protected bool _isComplete;
+    protected string reader;
 
     public Goal(string shortName, string description, int points)
     {
@@ -14,7 +15,11 @@ public abstract class Goal
         _points = points;
         _isComplete = false;
     }
-    public int GetPoints()
+    public Goal()
+    {
+
+    }
+     public int GetPoints()
     {
         return _points;
     }

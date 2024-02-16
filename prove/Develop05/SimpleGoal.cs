@@ -1,10 +1,12 @@
 public class SimpleGoal : Goal
 {
-    private StreamReader reader;
-
     public  SimpleGoal(string name, string description, int points) : base (name, description, points)
     {
         
+    }
+    public SimpleGoal(StreamReader reader)
+    {
+    
     }
     public override void RecordEvent()
     {

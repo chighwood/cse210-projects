@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
-using System.Xml.Serialization;
 using System.IO;
+using System.Diagnostics.Contracts;
+using System.Runtime.InteropServices;
+
 public class GoalManager
 {
     private List<Goal> _goals = new List<Goal>();
@@ -60,7 +62,7 @@ public class GoalManager
                 string description2 = Console.ReadLine();
                 Console.WriteLine("How many points will this goal be worth: ");
                 int.TryParse(Console.ReadLine(), out int points2);
-                _goals.Add(new SimpleGoal(name2, description2, points2));    
+                _goals.Add(new EternalGoal(name2, description2, points2));    
                 // CreateEternalGoal();
                 break;
 
@@ -130,6 +132,7 @@ public class GoalManager
         {
             Console.Write("Enter Filename to save to: ");
             string filename = Console.ReadLine();
+            filename = filename + "*.fil";
 
             using (StreamWriter writer = new StreamWriter(filename))
             {
@@ -140,7 +143,6 @@ public class GoalManager
                 }
             }
         }
-
         // Method to save the list of goals to a file
         // Serialize the list of goals and write it to a file
     }
@@ -149,6 +151,7 @@ public class GoalManager
     {
         Console.Write("Enter filename to load from: ");
            string filename = Console.ReadLine();
+           filename = GetFileNameFromUser();
            _goals.Clear();
 
            using (StreamReader reader = new StreamReader(filename))
@@ -158,13 +161,13 @@ public class GoalManager
                     string typeLine = reader.ReadLine(); 
                     switch (typeLine)
                     {
-                        case "GoalTracker.SimpleGoal":
+                        case "SimpleGoal":
                             _goals.Add(new SimpleGoal(reader));
                             break;
-                        case "GoalTracker.ChecklistGoal":
+                        case "ChecklistGoal":
                             _goals.Add(new ChecklistGoal(reader));
                             break;
-                        case "GoalTracker.EternalGoal":
+                        case "EternalGoal":
                             _goals.Add(new EternalGoal(reader));
                             break;
                         default:
@@ -176,5 +179,22 @@ public class GoalManager
         }
         // Method to load the list of goals from a file
         // Read the serialized data from the file and deserialize it to reconstruct the list of goals
-
+    public string GetFileNameFromUser()
+    {
+        // Get a list of file names
+        string[] filenames = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.fil");
+        // Display name of files by making a list with numbers
+        for (int f = 0; f < filenames.Length; f++)
+            {
+                Console.WriteLine($"{f + 1}. {filenames[f]}");
+            }
+        // Allow user to choose a file
+        Console.WriteLine("What file would you like to choose from (#): ");
+        // Return chosen file
+        if (!int.TryParse(Console.ReadLine(), out int choice) || choice < 1 || choice > filenames.Length)
+            {
+                return null;
+            }
+        return filenames[choice - 1];
+    }
 }
