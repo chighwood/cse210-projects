@@ -1,5 +1,16 @@
 using System;
 
+// I have worked on this for a long time so I hope it works the way it is suppose to. 
+// I have added a few different extras to make it a little more clean in the code. I 
+// first started off by clearing the console every time so that we don't have an on going 
+// list of menus and info. I have also allowed for the files saved to be avaliable to
+// choose from when loading in the data. I was able to do that by adding .fil to the end
+// of each file so when I serached for them, it would only return those that ended that 
+// way. I also added in to my eternal goals the number of times you completed that task.
+// Since it has an infinite amount, I thought it would be cool to see how many times you 
+// completed it. I hope this is what you were looking for or close to it. Thank you for 
+// your time of reading through it. 
+
 class Program
 {
     static void Main(string[] args)
