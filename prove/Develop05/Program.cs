@@ -10,6 +10,7 @@ class Program
         bool exit = false;
         while (!exit)
         {
+            Console.Clear();
             Console.WriteLine("Score: " + goalManager.GetScore());
             Console.WriteLine("\nMenu options:");
             Console.WriteLine("1. Create New Goal");

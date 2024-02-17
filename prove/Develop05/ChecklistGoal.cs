@@ -12,32 +12,58 @@ public class ChecklistGoal : Goal{
 
     public ChecklistGoal(StreamReader reader)
     {
-
+        _shortName = reader.ReadLine();
+        _description = reader.ReadLine();
+        _points = int.Parse(reader.ReadLine());
+        _pointsEarned = int.Parse(reader.ReadLine());
+        _isComplete = bool.Parse(reader.ReadLine());
+        _amountCompleted = int.Parse(reader.ReadLine());
+        _target = int.Parse(reader.ReadLine());
+        _bonus = int.Parse(reader.ReadLine()); 
     }
-
     public override void RecordEvent()
     {
-        _amountCompleted++;
-        if (_amountCompleted >= _target)
+        if (!_isComplete)
+        {
+            _amountCompleted++;
+            _pointsEarned += _points;
+        }
+        if (!_isComplete && _amountCompleted == _target)
         {
             _isComplete = true;
-            _points += _bonus;
+            _pointsEarned += _bonus;
         }
     }
     public override bool IsComplete()
     {
         return _isComplete;
     }
-    public override string GetDetailsString()
-    {
-        return $"{GetStringRepresentation()}, Completed: {_amountCompleted}/{_target}";
-    }
     public override string GetStringRepresentation()
     {
-        return GetDetailsString();
+        string x = "";
+        if (!_isComplete && _amountCompleted > 0)
+        {
+            x = "-";
+        }
+        else if (_isComplete)
+        {
+            x = "x";
+        }
+        else
+        {
+            x = " ";
+        }
+        return $"[{x}] {_shortName}: {_description}, Points: {_points}, Progress: {_amountCompleted}/{_target}";
     }
-        internal new void WriteToStreamWriter(StreamWriter writer)
+        public override void WriteToStreamWriter(StreamWriter writer)
     {
-        throw new NotImplementedException();
+        writer.WriteLine(_shortName);
+        writer.WriteLine(_description);
+        writer.WriteLine(_points);
+        writer.WriteLine(_pointsEarned);
+        writer.WriteLine(_isComplete);
+        writer.WriteLine(_amountCompleted);
+        writer.WriteLine(_target);
+        writer.WriteLine(_bonus);
     }
 }

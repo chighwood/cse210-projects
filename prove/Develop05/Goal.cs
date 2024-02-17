@@ -5,6 +5,7 @@ public abstract class Goal
     protected string _shortName;
     protected string _description;
     protected int _points;
+    protected int _pointsEarned;
     protected bool _isComplete;
     protected string reader;
 
@@ -13,6 +14,7 @@ public abstract class Goal
         _shortName = shortName;
         _description = description;
         _points = points;
+        _pointsEarned = 0;
         _isComplete = false;
     }
     public Goal()
@@ -23,13 +25,13 @@ public abstract class Goal
     {
         return _points;
     }
+    public int GetPointsEarned()
+    {
+        return _pointsEarned;
+    }
     public abstract void RecordEvent();
     public abstract bool IsComplete();
-    public abstract string GetDetailsString();
     public abstract string GetStringRepresentation();
 
-    internal void WriteToStreamWriter(StreamWriter writer)
-    {
-        throw new NotImplementedException();
-    }
+    public abstract void WriteToStreamWriter(StreamWriter writer);
 }

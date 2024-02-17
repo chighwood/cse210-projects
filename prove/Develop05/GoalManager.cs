@@ -7,15 +7,19 @@ using System.Runtime.InteropServices;
 public class GoalManager
 {
     private List<Goal> _goals = new List<Goal>();
-    private int _score;
 
     public GoalManager()
     {
-        _score = 0;
+
     }
     public int GetScore()
     {
-        return _score; 
+        int score = 0;
+        foreach (Goal goal in _goals)
+        {
+            score += goal.GetPointsEarned();
+        }
+        return score; 
     }
 
     public void Start()
@@ -31,6 +35,8 @@ public class GoalManager
         {
             Console.WriteLine(goal.GetStringRepresentation());
         }
+        Console.WriteLine("Press any key to continue: ");
+        Console.ReadKey();
     }
 
     public void CreateGoal()
@@ -95,12 +101,12 @@ public class GoalManager
         // List the goals with numbers for the user to select
         foreach (Goal goal in _goals)
         {
-            Console.WriteLine($"{_goals.IndexOf(goal)}. {goal.GetStringRepresentation()}");
+            Console.WriteLine($"{_goals.IndexOf(goal) +1}. {goal.GetStringRepresentation()}");
         }
         // Prompt user to select a goal from the list
         Console.WriteLine("\nSelect a goal to record progress or completion: ");
         string choice = Console.ReadLine();
-        int i = int.Parse(choice);
+        int i = int.Parse(choice) - 1;
 
         // Call the appropriate method on the selected goal to record progress or completion
         if ( i < 0 || i >= _goals.Count)
@@ -111,8 +117,6 @@ public class GoalManager
         if (!_goals[i].IsComplete())
         {
             _goals[i].RecordEvent();
-            _score += _goals[i].GetPoints();
-
             // This second "if" statement checks to see if goal is completed or not. 
             // It then uses the correct statement depending on if it's true or false.
             // It's mainly for the Checklist Goal and Eternal Goal classes.
@@ -122,7 +126,9 @@ public class GoalManager
                 Console.Write("Congratulations on completing your goal! ");
                 
             } else {
-                Console.Write("Keep up the good work! ");
+                Console.Write("\nKeep up the good work! ");
+                Console.WriteLine("\nPress any key to continue: ");
+                Console.ReadKey();
             }
         }   
     }
@@ -132,7 +138,7 @@ public class GoalManager
         {
             Console.Write("Enter Filename to save to: ");
             string filename = Console.ReadLine();
-            filename = filename + "*.fil";
+            filename = filename + ".fil";
 
             using (StreamWriter writer = new StreamWriter(filename))
             {
@@ -149,9 +155,7 @@ public class GoalManager
 
     public void LoadGoals()
     {
-        Console.Write("Enter filename to load from: ");
-           string filename = Console.ReadLine();
-           filename = GetFileNameFromUser();
+           string filename = GetFileNameFromUser();
            _goals.Clear();
 
            using (StreamReader reader = new StreamReader(filename))
@@ -182,14 +186,18 @@ public class GoalManager
     public string GetFileNameFromUser()
     {
         // Get a list of file names
-        string[] filenames = Directory.GetFiles(Directory.GetCurrentDirectory(), "*.fil");
+        string test = Directory.GetCurrentDirectory();
+        string[] filenames = Directory.GetFiles(Directory.GetCurrentDirectory(),"*.fil");
+
         // Display name of files by making a list with numbers
         for (int f = 0; f < filenames.Length; f++)
             {
-                Console.WriteLine($"{f + 1}. {filenames[f]}");
+                Console.WriteLine($"{f + 1}. {Path.GetFileName(filenames[f])}");
             }
+
         // Allow user to choose a file
         Console.WriteLine("What file would you like to choose from (#): ");
+
         // Return chosen file
         if (!int.TryParse(Console.ReadLine(), out int choice) || choice < 1 || choice > filenames.Length)
             {
