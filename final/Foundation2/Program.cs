@@ -26,28 +26,31 @@ class Program
         List<Product> productsOrder1 = new List<Product> { product1, product2, product5, product3};
         Order order1 = new Order(productsOrder1, customer1);
 
-        Console.WriteLine("Order 1 Information:");
-        Console.WriteLine("Packing Label:\n" + order1.GeneratePackingLabel());
-        Console.WriteLine("Shipping Label:\n" + order1.GenerateShippingLabel());
-        Console.WriteLine("Total Cost: $" + order1.CalcTotalCost());
+        Console.WriteLine("=============================");
+        Console.WriteLine("Order 1 Information:\n");
+        Console.WriteLine("Packing Label:\n-------------------\n" + order1.GeneratePackingLabel());
+        Console.WriteLine("Shipping Label:\n-------------------\n" + order1.GenerateShippingLabel());
+        Console.WriteLine("Total Cost: $" + order1.CalcTotalCost() + "\n\n");
 
         // Order # 2
         List<Product> productsOrder2 = new List<Product> { product2, product2, product5, product4, product1};
         Order order2 = new Order(productsOrder2, customer2);
 
-        Console.WriteLine("Order 1 Information:");
-        Console.WriteLine("Packing Label:\n" + order2.GeneratePackingLabel());
-        Console.WriteLine("Shipping Label:\n" + order2.GenerateShippingLabel());
-        Console.WriteLine("Total Cost: $" + order2.CalcTotalCost());
+        Console.WriteLine("=============================");
+        Console.WriteLine("Order 2 Information:\n");
+        Console.WriteLine("Packing Label:\n-------------------\n" + order2.GeneratePackingLabel());
+        Console.WriteLine("Shipping Label:\n-------------------\n" + order2.GenerateShippingLabel());
+        Console.WriteLine("Total Cost: $" + order2.CalcTotalCost() + "\n\n");
 
         // Order # 3
         List<Product> productsOrder3 = new List<Product> { product4, product4, product4, product5, product1, product2};
         Order order3 = new Order(productsOrder3, customer3);
 
-        Console.WriteLine("Order 1 Information:");
-        Console.WriteLine("Packing Label:\n" + order3.GeneratePackingLabel());
-        Console.WriteLine("Shipping Label:\n" + order3.GenerateShippingLabel());
-        Console.WriteLine("Total Cost: $" + order3.CalcTotalCost());
+        Console.WriteLine("=============================");
+        Console.WriteLine("Order 3 Information:\n");
+        Console.WriteLine("Packing Label:\n-------------------\n" + order3.GeneratePackingLabel());
+        Console.WriteLine("Shipping Label:\n-------------------\n" + order3.GenerateShippingLabel());
+        Console.WriteLine("Total Cost: $" + order3.CalcTotalCost() + "\n\n");
 
     }
 }

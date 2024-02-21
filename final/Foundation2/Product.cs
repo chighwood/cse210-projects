@@ -1,3 +1,6 @@
+using System.Dynamic;
+using System.Runtime.InteropServices;
+
 public class Product
 {
 
@@ -19,5 +22,17 @@ public class Product
     public double CalcTotalCost()
     {
         return _price * _quantity;
+    }
+
+
+    public string GetName()
+    {
+        return _name;
+    }
+
+
+    public int GetId()
+    {
+        return _id;
     }
 }
