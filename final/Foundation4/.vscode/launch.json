@@ -9,7 +9,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/bin/Debug/net7.0/Foundation3.dll",
+            "program": "${workspaceFolder}/bin/Debug/net7.0/Foundation4.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
