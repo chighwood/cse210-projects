@@ -4,7 +4,7 @@ public class Reception : Event
 {
     private string rsvpEmail;
 
-    public Reception(string title, string description, DateTime date, DateTime time, Address address, string rsvpEmail) : base(title, description, date, time, address)
+    public Reception(string title, string description, DateTime dateTime, Address address, string rsvpEmail) : base(title, description, dateTime, address)
     {
         this.rsvpEmail = rsvpEmail;
     }
@@ -16,6 +16,6 @@ public class Reception : Event
 
     public override string GetShortDescription()
     {
-        return $"Reception: {title}, {date.ToShortDateString()}";
+        return $"Reception: {_title}, {_dateTime.ToShortDateString()}";
     }
 }

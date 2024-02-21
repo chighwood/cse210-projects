@@ -6,7 +6,8 @@ public class OutdoorGathering : Event
 
     private string _weatherForecast;
 
-    public OutdoorGathering(string title, string description, DateTime date, DateTime time, Address address) : base(title, description, date, time, address)
+
+    public OutdoorGathering(string title, string description, DateTime dateTime, Address address) : base(title, description, dateTime, address)
     {
         Random random = new Random();
         int index = random.Next(WeatherOptions.Length);
@@ -20,6 +21,7 @@ public class OutdoorGathering : Event
 
     public override string GetShortDescription()
     {
-        return $"Outdoor Gathering: {title}, {date.ToShortDateString()}";
+        return $"Outdoor Gathering: {_title}, {_dateTime.ToShortDateString()}";
     }
+
 }
